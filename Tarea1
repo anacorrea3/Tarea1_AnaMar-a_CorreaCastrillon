@@ -1,0 +1,43 @@
+#Punto 1
+def Factorial(n):
+    'Definiendo la función factorial para números enteros'
+    n=int(n) #Números enteros únicamente
+    if n>0: #Números enteros positivos
+        x=Factorial(n-1)*n #Recursividad
+    elif n==1 or n==0: 
+        x=1
+    else:
+        x=print('Ingrese un número entero y positivo') #Números enteros negativos
+    return x
+
+#Punto 2
+def Binomial(n,k):
+    'Definición de la función binomial utilizando el factorial definido con anterioridad'
+    if k<n:
+        b= Factorial(n)/(Factorial(k)*Factorial(n-k))
+    else:
+        print('Ingrese un k menor que n')
+    return b
+
+#Punto 3
+def Pascal(n):
+    for line in range(n):
+        for i in range(line+1):
+            print(Binomial(line,i)," ",end= " ")
+        print()
+n=int(input('Ingrese el número n:'))
+print(Pascal(n)
+      
+#Punto 4
+import numpy as np
+def Probabilidad(n,k):
+    'Definición de la probabilidad de que cuando se lanza una moneda n veces salga cara k veces'
+    p= np.round(Binomial(n,k)/(2**n),18) #Utilización de la función Binomial definida con anterioridad
+    return p
+#a Probabilidad de que caiga cara 10 veces al tirar una moneda 100 veces; así n=100 y k=10
+print('La probabilidad de obtener 10 caras en un evento de 100 lanzamientos de una moneda es:',Probabilidad(100,10))
+#b La probabilidad de que caiga cara más de 30 veces
+suma=0
+for k in range(31,101): #Suma de las probabilidades de que salga cara de 31 a 100 veces
+    suma = suma +Probabilidad(100,k)
+print('La probabilidad de que caiga cara más de 30 veces es:',np.round(suma,5))
